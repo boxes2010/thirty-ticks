@@ -1,0 +1,71 @@
+export default {
+  id: 'soot_hollow',
+  name: 'Soot Hollow',
+  after: ['slack_bridge'],
+  pin: [490, 220],
+  intro: 'Soot Hollow tower has gone dark from top to bottom. The pin is up there somewhere.',
+  purse: 40,
+  par: [72, 110, 170],
+  map: [
+    '^^^^^^^^^^^^^^^^^^^^^^^^',
+    '^^..ff....^^^,,,,ff,,,^^',
+    '^...ff.....^^,,,,ff,,,,^',
+    '^.======....^,,,,,,===,^',
+    '^......=....^,,,,,,=,,,^',
+    '^......=....,,,,,,,=,,,^',
+    '^......=============,,,^',
+    '^..ff.......=,,,,,,,,,,^',
+    '^..ff.......=,,,,fff,,,^',
+    '^^..........=,,,,fff,,^^',
+    '^^^.........=,,,,fff,^^^',
+    '^^^^^^^^^^^^^^^^^^^^^^^^',
+  ],
+  start: [2, 3],
+  encounters: {
+    '.': { steps: [3, 5], teams: [['cograt', 'cograt'], ['sootwisp'], ['boltbeetle'], ['sootwisp', 'cograt']] },
+    ',': { steps: [3, 5], teams: [['gearhound'], ['boltbeetle', 'sootwisp'], ['gearhound', 'cograt']] },
+    f: { steps: [2, 3], teams: [['steam_adder'], ['gearhound', 'gearhound']] },
+  },
+  towns: [
+    {
+      id: 'cinder_row',
+      name: 'Cinder Row Stillhouse',
+      at: [5, 3],
+      stalls: [
+        { kind: 'rewind', who: 'Auntie Verdigris' },
+        { kind: 'eatery', name: 'Coal-Roast Chestnuts', price: 18 },
+        { kind: 'shop', stock: ['claw_hammer', 'riveted_vest', 'hobnails'] },
+        {
+          kind: 'talk',
+          who: 'Sweep',
+          lines: [{ text: 'The tower stair is black as pitch. The Wickwright at Ember Cross makes lamps that never gutter.' }],
+        },
+      ],
+    },
+    {
+      id: 'ember_cross',
+      name: 'Ember Cross Stillhouse',
+      at: [12, 6],
+      stalls: [
+        { kind: 'rewind', who: 'Auntie Verdigris' },
+        { kind: 'eatery', name: 'Smoked Trout', price: 24 },
+        { kind: 'shop', stock: ['rivet_gun', 'boiler_plate', 'spring_heels'] },
+        {
+          kind: 'talk',
+          who: 'Wickwright',
+          lines: [
+            { needs: ['has_tallow'], lacks: ['lamp_lit'], sets: ['lamp_lit'], item: 'lucky_cog', text: 'Tallow! Here: one lamp, and a lucky cog for your trouble.' },
+            { needs: ['lamp_lit'], text: 'Keep the wick trimmed.' },
+            { text: 'No tallow, no lamp. The adder thicket to the south-east drips with the stuff.' },
+          ],
+        },
+      ],
+    },
+  ],
+  gates: [],
+  spots: [
+    { at: [18, 9], lacks: ['has_tallow'], sets: ['has_tallow'], text: 'A lump of adder tallow!' },
+    { at: [12, 10], lacks: ['cart_looted'], sets: ['cart_looted'], gold: 60, text: 'An abandoned handcart. +60 gold' },
+  ],
+  tower: { at: [21, 3], name: 'Soot Hollow Tower', boss: ['cinder_dowager'], needs: ['lamp_lit'], hint: 'The stair is pitch dark. You need a light.' },
+};

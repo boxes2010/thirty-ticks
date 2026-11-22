@@ -1,0 +1,67 @@
+export default {
+  id: 'slack_bridge',
+  name: 'Slack Bridge',
+  after: ['lowfield'],
+  pin: [320, 150],
+  intro: 'The Millrace pin is gone, and the thief cut the bridge ropes behind her.',
+  purse: 30,
+  par: [65, 100, 150],
+  map: [
+    '~~~~~~~~~~~~~~~~~~~~~~',
+    '~~.fff....~~,,,,^^^,~~',
+    '~..fff....~~,,,,,^^,,~',
+    '~...ff....~~,,,,,,,,,~',
+    '~.........~~,,,,,,,,,~',
+    '~.========##=======,,~',
+    '~.........~~,,,,,,=,,~',
+    '~....ff...~~,,,ff,=,,~',
+    '~~...ff...~~,,,ff,==~~',
+    '~~~.......~~,,,,,,,~~~',
+    '~~~~~~~~~~~~~~~~~~~~~~',
+  ],
+  start: [2, 5],
+  encounters: {
+    '.': { steps: [3, 5], teams: [['springtail'], ['cograt'], ['rustmite', 'cograt'], ['springtail', 'springtail']] },
+    ',': { steps: [3, 5], teams: [['sootwisp'], ['cograt', 'cograt'], ['boltbeetle'], ['sootwisp', 'springtail']] },
+    f: { steps: [2, 3], teams: [['cograt', 'cograt'], ['sootwisp'], ['boltbeetle']] },
+  },
+  towns: [
+    {
+      id: 'millrace',
+      name: 'Millrace Stillhouse',
+      at: [5, 5],
+      stalls: [
+        { kind: 'rewind', who: 'Auntie Verdigris' },
+        { kind: 'eatery', name: 'Barley Broth', price: 12 },
+        { kind: 'shop', stock: ['spanner', 'leather_apron', 'hobnails'] },
+        {
+          kind: 'talk',
+          who: 'Joiner',
+          lines: [
+            { needs: ['has_rope'], lacks: ['bridge_up'], sets: ['bridge_up'], text: 'Good stout rope! Give me a moment... there. The bridge will hold.' },
+            { needs: ['bridge_up'], text: 'Mind the third plank.' },
+            { text: 'The bridge is out and I have no rope. The old mill in the north-west thicket had coils of it.' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'far_bank',
+      name: 'Far Bank Stillhouse',
+      at: [14, 5],
+      stalls: [
+        { kind: 'rewind', who: 'Auntie Verdigris' },
+        { kind: 'eatery', name: 'Eel Pie', price: 16 },
+        { kind: 'shop', stock: ['claw_hammer', 'riveted_vest'] },
+        {
+          kind: 'talk',
+          who: 'Ferryman',
+          lines: [{ text: 'She calls herself the Toll Spider and she hits hard. Do not climb the tower in your shirtsleeves.' }],
+        },
+      ],
+    },
+  ],
+  gates: [{ at: [10, 5], until: 'bridge_up', hint: 'The bridge is out. Someone in town might mend it.' }],
+  spots: [{ at: [4, 2], lacks: ['has_rope'], sets: ['has_rope'], text: 'A coil of rope in the mill ruins!' }],
+  tower: { at: [19, 8], name: 'Millrace Tower', boss: ['toll_spider'], needs: [], hint: '' },
+};
